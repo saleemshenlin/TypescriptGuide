@@ -305,8 +305,7 @@ Debugging: **Generate source maps**
 	/// <reference path="path-to-your-ts-file" />
     	
 	/// <reference path="typings/dhiapp/extensions.d.ts" />
-	
-	```
+  ```
 
 #### 添加编译后的 JS 文件到 HTML 页面
 
