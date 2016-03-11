@@ -224,7 +224,7 @@
 ### 接口
 interface 在 TypeScript 中很常用, 除了让具体的类去实现以外, 它还经常作为一些对象字面量的类型声明 (比如参数对象).除此之外, 同一个 interface 可以分成多个来书写, 这样也增加了它的灵活性.
 
-	```typescript
+```typescript
 	
 	export interface ITopic {
 		publish(args?: Object): void;
@@ -252,7 +252,7 @@ interface 在 TypeScript 中很常用, 除了让具体的类去实现以外, 它
 	    // 同上, 编译器会知道 event 的类型为 Event.
 	    return;
 	};
-	```
+```
 
 ### `declare` 关键字
 
@@ -260,11 +260,12 @@ interface 在 TypeScript 中很常用, 除了让具体的类去实现以外, 它
 
 如:
 
-	```typescript
+```typescript
+
 	declare interface IApp { }
 
 	declare class DhiApp implements IApp { }
-	```
+```
 	
 
 
@@ -276,9 +277,9 @@ Visual Studio 2015 开始内置了 TypeScript, 可以访问 http://www.typescrip
 
 Visual Studio 2013 npm安装**Typescript**
 	
-	```
+```
 	npm install -g typescript
-	```
+```
 
 
 
