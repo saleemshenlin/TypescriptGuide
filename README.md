@@ -44,7 +44,7 @@
 
 原始值对应的类型还有 `number`, `boolean`, `void`, 而其他非原始值类型则使用相关类名, 如 `Date`, `RegExp`.
 
-  ```typescript 
+  ```typescript
 	
   topic.subscribe = function ():void{
         callbacks.add.apply(topic, arguments);
@@ -73,7 +73,7 @@
   
 箭头函数 (ES6)
 
-	```typescript
+```typescript
 
 	class MyClass {
 	    foo() {
@@ -110,7 +110,7 @@
 	        console.log('banana');
 	    }
 	}
-	```
+```
 
 查看编译结果, 可以发现与上一段代码并无差异, 类型信息都不见了. 因为 TypeScript 中的类型信息仅在编译时存在, 编译为 JavaScript 后, 相关类型信息都会被抹去. (但未来是否会为 debug 版本提供运行时类型验证就说不定了.)
 
@@ -118,45 +118,45 @@
 
 第三个例子 "Walkthrough: Classes", 在第二个例子的基础上, 将原有的 ES3/5 风格的构造函数改为了 ES6 风格的 class. 如果之前不熟悉 ES6, 没关系, 通过这个简单的例子, 并参考编译出的结果, 也就差不多能知道个大概了.
 
-	```typescript
+```typescript
 
-  class Module implements IModule {
-		  // 属性, 与变量相似, 只是不需要 var.
-    	modulePath: string;
-      name: string;
-      protected controllerTypes: Array<typeof Controller>;
+  	class Module implements IModule {
+		// 属性, 与变量相似, 只是不需要 var.
+		modulePath: string;
+	   	name: string;
+	  	protected controllerTypes: Array<typeof Controller>;
 
-		  // 构造函数是可选的, 与普通函数的类型标注相似, 除了没有返回值类型.
-	    // 除此之外, 可以添加 public/private 关键字, 以此在声明参数的同时声明一个同名属性.
-	    // 当然, 该属性的值会被初始化为构造函数被调用时参数的值.
-      constructor(public app: DhiApp) {
-          this.app = app;
-      }
+		// 构造函数是可选的, 与普通函数的类型标注相似, 除了没有返回值类型.
+		// 除此之外, 可以添加 public/private 关键字, 以此在声明参数的同时声明一个同名属性.
+		// 当然, 该属性的值会被初始化为构造函数被调用时参数的值.
+		constructor(public app: DhiApp) {
+			this.app = app;
+		}
 
-      initialize(): void {
-      }
+		initialize(): void {
+		}
 
-      CreateController(view: View): IController {
-          for (let val of this.controllerTypes) {
-              if (view.controllerName == typeof val) {
-                  return new val(this, view);
-              }
-          }
-          return null;
-      }
+		CreateController(view: View): IController {
+			for (let val of this.controllerTypes) {
+				if (view.controllerName == typeof val) {
+					return new val(this, view);
+       			}
+			}
+			return null;
+    	}
 
-      PublishTopic(topicName: string, ...args: any[]): void {
-          this.app.Topic(topicName).publish(args);
-      };
+    	PublishTopic(topicName: string, ...args: any[]): void {
+        	this.app.Topic(topicName).publish(args);
+      	};
     }
 
     class Demo extends Generic.Module {
-	      moduleName: string;
-	      constructor(app: Generic.DhiApp, element: HTMLElement) {
-			  //初始化必须，继承父类的方法	        
-			      super(app);
-	          this.moduleName = 'Demo';
-	      }
+		moduleName: string;
+		constructor(app: Generic.DhiApp, element: HTMLElement) {
+		//初始化必须，继承父类的方法	        
+			super(app);
+	        this.moduleName = 'Demo';
+	   	}
 	
   	    initialize() {
   			//可选继承父类的方法
@@ -172,15 +172,13 @@
   	        $('body').html(url);
   	    }
     }
-  ```
+```
 
 
 ### 例子: 泛型
-
-
   ```typescript
 
-    // 熟悉 C# 的同学可能就轻车熟路了, 或者熟悉其他语言中泛型的同学应该变通一下也很好理解.
+	// 熟悉 C# 的同学可能就轻车熟路了, 或者熟悉其他语言中泛型的同学应该变通一下也很好理解.
     // 和函数参数一样, 可以有两个三个很多个~
 
     class Greeter<T> {
@@ -196,11 +194,10 @@
     // 这里指定了上方的 T 类型为 string, 那么对应的构造函数参数 message, 属性 greeting
     // 的类型都应该为 string.
 
-    var greeter = new Greeter<string>("Hello, world");
+	var greeter = new Greeter<string>("Hello, world");
   ```
 
 ### 例子: 模块
-
 
   ```typescript
 
@@ -230,20 +227,20 @@ interface 在 TypeScript 中很常用, 除了让具体的类去实现以外, 它
 	```typescript
 	
 	export interface ITopic {
-      publish(args?: Object): void;
-      subscribe(func: Function): void;
-      unsubscribe(func: Function): any;
-  }
+		publish(args?: Object): void;
+		subscribe(func: Function): void;
+		unsubscribe(func: Function): any;
+	}
 	
 	export class Topic implements ITopic {
-      topicName: string;
-      constructor(topicName: string) {
-          this.topicName = topicName
-      };
-      publish(args?: Object): void { };
-      subscribe(func: Function): void { };
-      unsubscribe(func: Function): any { };
-  }
+		topicName: string;
+		constructor(topicName: string) {
+			this.topicName = topicName
+		};
+		publish(args?: Object): void { };
+		subscribe(func: Function): void { };
+		unsubscribe(func: Function): any { };
+    }
 	
 	// 表示一个函数.
 	interface IHandler {
@@ -264,7 +261,6 @@ interface 在 TypeScript 中很常用, 除了让具体的类去实现以外, 它
 如:
 
 	```typescript
-	
 	declare interface IApp { }
 
 	declare class DhiApp implements IApp { }
